@@ -1,9 +1,51 @@
+.header {
+    margin-top: 10px;
+    border-left: 2px solid #E9E9E9;
+    border-bottom: 2px solid #E9E9E9;
+}
+
 .header__button {
+    margin-right: 25px;
     float: right;
     border-radius: 20px;
 }
 
+.header__button-submit {
+    margin-right: 25px;
+    border: none;
+    float: right;
+    border-radius: 20px;
+    background-color: #ED0775;
+}
+
+.header__button-submit:hover {
+    background-color: rgb(192, 18, 102);
+}
+
 .header__title {
+    margin-left: 20px;
     font-size: 24px;
     color: black;
+}
+
+.generator {
+    margin-top: 50px;
+}
+
+.generator__submit-button {
+    display: none;
+}
+
+.letter {
+    margin-top: 100px;
+}
+
+.letter_title {
+    text-align: center;
+}
+
+.letter_body {
+    margin-top: 30px;
+    border-radius: 10px;
+    border: 2px solid rgb(209, 209, 209);
 }

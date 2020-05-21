@@ -46,8 +46,43 @@ function loadCompanyApi(data) {
   //   .then((response) => response);
 }
 
+function createLetterApi(data) {
+  
+  const response = {
+    data: {
+      letter : `--- Hello ---
 
-export { loadCompanyApi };
+      We have experienced QA Engineers who can provide required testing for you.
+      
+      - Do you have any other requirements except that you have mentioned in the annotation?
+      - What are your expectations from testing?
+      
+      Thanks,
+      Ruslan`
+    }
+  }; 
+
+  return response;
+  
+  // const url = `${process.env.REACT_CREATE_LETTER_ROUTE}?id=${data.id}`;
+  // const token = localStorage.getItem('token');
+  // if (!token) {
+  //   console.log('No token found');
+  //   return;
+  // }
+
+  // return axios
+  //   .get(url, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //   .then((response) => response);
+}
+
+
+export { loadCompanyApi, createLetterApi };
 
 
 
