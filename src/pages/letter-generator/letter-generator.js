@@ -6,6 +6,8 @@ import {
   loadCompany,
   changeInput,
   createLetter,
+  addQuestion,
+  removeQuestion
 } from '../../common/redux/letter-generator/letter.generator.actions';
 
 class LetterGenerator extends Component {
@@ -15,6 +17,7 @@ class LetterGenerator extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.isFormCompleted = this.isFormCompleted.bind(this);
     this.handleCreateLetter = this.handleCreateLetter.bind(this);
+    this.handleAddQuestion = this.handleAddQuestion.bind(this);
   }
 
   loadData() {
@@ -47,6 +50,15 @@ class LetterGenerator extends Component {
     this.props.changeInput({ name: event.target.name, value: event.target.value });
   }
 
+  handleAddQuestion(event) {
+    if (event.target.checked) {
+      this.props.addQuestion({ name: event.target.name, value: event.target.value });
+    } else {
+      this.props.removeQuestion({ name: event.target.name, value: event.target.value });
+    }
+
+  }
+
   handleCreateLetter(event) {
     event.preventDefault();
 
@@ -72,7 +84,6 @@ class LetterGenerator extends Component {
   render() {
     console.log(this.props);
     const {
-      id,
       projectType,
       projectPlatform,
       functionality,
@@ -106,13 +117,11 @@ class LetterGenerator extends Component {
                   </div>
                 </div>
                 <div className="row">
-                <div className="col-lg-1">
-                  </div>
+                  <div className="col-lg-1"></div>
                   <div className="col-lg-10 letter_body">
                     <pre>{letter}</pre>
                   </div>
-                  <div className="col-lg-1">
-                  </div>
+                  <div className="col-lg-1"></div>
                 </div>
               </section>
             </main>
@@ -193,21 +202,21 @@ class LetterGenerator extends Component {
                       <h3>2. Select the functionality</h3>
                     </div>
                     <div className="form-group">
-                      <label>Functionality</label>
-                      <select
-                        onChange={this.handleInputChange}
-                        name="functionalitySelect"
-                        className="form-control"
-                      >
-                        <option selected={true} disabled="disabled" value="">
-                          Select requierd functionality
-                        </option>
-                        {functionality.map((str, index) => (
-                          <option key={index} value={str}>
+                      {functionality.map((str, index) => (
+                        <div key={index} className="form-check ">
+                          <input
+                            onChange={this.handleAddQuestion}
+                            name="functionalitySelect"
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`functionality${index}`}
+                            value={str}
+                          />
+                          <label className="form-check-label" htmlFor={`functionality${index}`}>
                             {str}
-                          </option>
-                        ))}
-                      </select>
+                          </label>
+                        </div>
+                      ))}
                     </div>
 
                     <div className="generator__title">
@@ -235,42 +244,42 @@ class LetterGenerator extends Component {
                       <h3>4. Select the portfolio examples</h3>
                     </div>
                     <div className="form-group">
-                      <label>Portfolio examples</label>
-                      <select
-                        onChange={this.handleInputChange}
-                        name="portfolioExamplesSelect"
-                        className="form-control"
-                      >
-                        <option selected={true} disabled="disabled" value="">
-                          Select the portfolio examples
-                        </option>
-                        {portfolioExamples.map((str, index) => (
-                          <option key={index} value={str}>
+                      {portfolioExamples.map((str, index) => (
+                        <div key={index} className="form-check ">
+                          <input
+                            onChange={this.handleAddQuestion}
+                            name="portfolioExamplesSelect"
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`portfolio${index}`}
+                            value={str}
+                          />
+                          <label className="form-check-label" htmlFor={`portfolio${index}`}>
                             {str}
-                          </option>
-                        ))}
-                      </select>
+                          </label>
+                        </div>
+                      ))}
                     </div>
 
                     <div className="generator__title">
-                      <h3>4. Select the relevant questions</h3>
+                      <h3>5. Select the relevant questions</h3>
                     </div>
                     <div className="form-group">
-                      <label>Relevant questions</label>
-                      <select
-                        onChange={this.handleInputChange}
-                        name="relevantQuestionsSelect"
-                        className="form-control"
-                      >
-                        <option selected={true} disabled="disabled" value="">
-                          Select the relevant questions
-                        </option>
-                        {relevantQuestions.map((str, index) => (
-                          <option key={index} value={str}>
+                      {relevantQuestions.map((str, index) => (
+                        <div key={index} className="form-check ">
+                          <input
+                            onChange={this.handleAddQuestion}
+                            name="relevantQuestionsSelect"
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`question${index}`}
+                            value={str}
+                          />
+                          <label className="form-check-label" htmlFor={`question${index}`}>
                             {str}
-                          </option>
-                        ))}
-                      </select>
+                          </label>
+                        </div>
+                      ))}
                     </div>
                     <button
                       id="formSubmit"
@@ -331,6 +340,8 @@ const mapDispatchToProps = {
   loadCompany,
   changeInput,
   createLetter,
+  addQuestion,
+  removeQuestion
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LetterGenerator);
