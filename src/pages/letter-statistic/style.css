@@ -1,0 +1,32 @@
+.statistic {
+    margin-top: 50px;
+}
+
+.statistic__succesess {
+    text-align: center;
+    color: royalblue;
+}
+
+.statistic__error {
+    text-align: center;
+    color: red;
+}
+
+.header__title {
+    margin-left: 20px;
+    font-size: 24px;
+    color: black;
+}
+
+.header__description {
+    margin-right: 25px;
+    float: right;
+}
+
+/* .header__appeal-wrapper {
+    text-align: center;
+} */
+
+.header__appeal {
+    text-align: center;
+}

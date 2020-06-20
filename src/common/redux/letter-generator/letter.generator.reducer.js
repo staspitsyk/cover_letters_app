@@ -4,6 +4,11 @@ import {
   CREATE_LETTER_COMPLETED,
   ADD_QUESTION,
   REMOVE_QUESTION,
+  LOAD_CURRENT_COMPANIES_COMPLETED,
+  SHOW_LOADER,
+  SUBMIT_LETTER_SUCCSESS,
+  SUBMIT_LETTER_FAILED,
+  HIDE_NOTIFICATION,
 } from './types';
 
 const initialState = {
@@ -25,6 +30,17 @@ const initialState = {
   introSelect: '',
   portfolioExamplesSelect: [],
   relevantQuestionsSelect: [],
+
+
+  // statistic
+
+  currentCompanies: [],
+
+  companieSelect: '',
+  urlSelect: '',
+  letterSelect: '',
+  isSuccesses: '',
+  loading: false,
 };
 
 export function letterGeneratorReducer(state = initialState, action) {
@@ -49,6 +65,23 @@ export function letterGeneratorReducer(state = initialState, action) {
 
     case CREATE_LETTER_COMPLETED:
       return { ...state, letter: action.payload.letter };
+
+      //statistic
+
+    case LOAD_CURRENT_COMPANIES_COMPLETED:
+      return { ...state, currentCompanies: action.payload.companies };
+
+    case SHOW_LOADER:
+      return { ...state, loading: true }
+
+    case SUBMIT_LETTER_SUCCSESS:
+      return { ...state, isSuccesses: 'success', loading: false, companieSelect: '', urlSelect: '', letterSelect: '' }
+
+    case SUBMIT_LETTER_FAILED:
+      return { ...state, isSuccesses: 'error', loading: false }
+
+    case HIDE_NOTIFICATION:
+      return { ...state, isSuccesses: '' }
 
     default:
       return state;
